@@ -1,0 +1,34 @@
+<!-- to print the divisors of a entered number -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>fieldTest</title>
+    </head>
+    <body>
+        <form name = "form">
+            enter Number :<input type = "text" id="demo" name = "value" onkeyup="checkDivisible()">
+        </form>
+        <p id ="p_tag"></p>
+        <script>
+            let element = document.getElementById("demo");
+            element.addEventListener("keypress", function (evt) {
+                if (evt.which < 48 || evt.which > 57){
+                    evt.preventDefault();
+                }
+            });
+            async function checkDivisible(){
+                let divisibleElement = document.getElementById("p_tag");
+                divisibleElement.innerHTML = "";
+                let datavalue = Number(document.forms["form"]["value"].value);
+                 function val(){
+                    for(let i=1;i<=(datavalue/2);i++){
+                        if(datavalue%i == 0){
+                            divisibleElement.innerHTML += "<br>"+i;                   
+                        }
+                    }
+                }
+                await val();
+            }
+        </script>
+    </body>
+</html>
