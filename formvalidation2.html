@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><form action="validation"></form></title>
+        <style>
+            form{
+                padding-left: 500px;
+                padding-top: 100px;
+            }
+        </style>
+    </head>
+    <body>
+        <centre>
+                <form name = "form1" onsubmit="return validateForm()" action="/action" method="POST">
+                    FirstName : <input type="text" name="first_name"><br><br>
+                    LastName : <input type="text" name="last_name"><br><br>
+                    Email_id : <input type="email" name="email"><br><br>
+                    phone No: <input type="text" name="phone_no"  id="demo"><br><br>
+                    Age : <input type="text"  maxlength="2" minlength="2" name="age" id="demo1" ><br><br>
+                   <input type="Submit">
+        
+                </form>
+        </centre>
+        <script>
+            let element = document.getElementById("demo");
+            element.addEventListener("keypress", function (evt) {
+                if (evt.which < 48 || evt.which > 57){
+                    evt.preventDefault();
+                }
+            });
+            let element1 = document.getElementById("demo1");
+            element1.addEventListener("keypress", function (evt) {
+                if (evt.which < 48 || evt.which > 57){
+                    evt.preventDefault();
+                }
+            });
+            let obj = {
+                first_Name : "muruga",
+                last_Name : "lakshmi",
+                email : "mm@gmail.com",
+                phone_no : 909090000,
+                age : 20
+            };
+            
+            document.forms["form1"]["first_name"].value = obj.first_Name;
+            document.forms["form1"]["last_name"].value = obj.last_Name;
+            document.forms["form1"]["email"].value = obj.email;
+            document.forms["form1"]["phone_no"].value = obj.phone_no;
+            document.forms["form1"]["age"].value = obj.age;
+
+            function validateForm(){
+                let first_Name = document.forms["form1"]["first_name"];
+                let last_Name = document.forms["form1"]["last_name"];
+                let email = document.forms["form1"]["email"];
+                let phone_no = document.forms["form1"]["phone_no"];
+                let age = document.forms["form1"]["age"];
+                var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{0,1})+$/;
+                if(first_Name.value == ""){
+                    first_Name.focus();
+                    //alert("enter first_name");
+                    return false;
+                }
+                if(last_Name.value == ""){
+                    last_Name.focus();
+                    //alert("enter last_name");
+                    return false;
+                }
+                if(email.value == ""){
+                    email.focus();
+                    //alert("enter email");
+                    return false;
+                }
+                if (email.value.match(mailformat)){ 
+                    //window.alert("Please enter a valid e-mail address."); 
+                    email.focus(); 
+                    return false; 
+                }
+                if(phone_no.value == ""){
+                    phone_no.focus();
+                    //alert("enter valid phone no");
+                    return false;
+                }
+                if(age.value == ""){
+                    age.focus();
+                    //alert("enter a valid age");
+                    return false;
+                }
+                
+            return true;
+            }
+           
+        </script>
+        
+    </body>
+</html>
