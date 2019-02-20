@@ -1,0 +1,20 @@
+<script>
+    let promise = fetch('https://ghibliapi.herokuapp.com/films');
+    promise
+        .then(function(responce){
+            return responce.json();
+        })
+        .then(function(myJSon){
+            /*let str = JSON.stringify(myJSon);
+            let json = JSON.parse(str);*/
+            for(let i of myJSon){
+                //alert(i);
+                let jsarray = JSON.stringify(i);
+                let jsarr = JSON.parse(jsarray);
+
+                for( let j in jsarr){
+                    document.writeln(j+" : "+ jsarr[j]+"<br>");
+                }
+            }
+        });
+</script> 
